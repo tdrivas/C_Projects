@@ -5,7 +5,8 @@ struct stack
 { 
     int grade; 
     struct stack *next; 
-}; 
+};
+ 
 void construct(struct stack **); 
 int isEmpty(struct stack *); 
 void push(struct stack **, int x); 
@@ -28,6 +29,7 @@ int isEmpty(struct stack *head)
     return 0; 
 } 
   
+//insert element in stack
 void push(struct stack **head, int vath) 
 { 
     struct stack *p = (struct stack *)malloc(sizeof(*p)); 
@@ -41,7 +43,8 @@ void push(struct stack **head, int vath)
     p->next = *head; 
     *head = p; 
 } 
-  
+
+//delete element from stack  
 int pop(struct stack **head) 
 { 
     int x; 
@@ -55,11 +58,13 @@ int pop(struct stack **head)
     return x; 
 } 
   
+//return the top element of the stack
 int top(struct stack *head) 
 { 
     return (head->grade); 
 } 
   
+//recursive implementation of insertionSort
 void Insert_Sort(struct stack **head, int vath) 
 { 
 
@@ -73,8 +78,6 @@ void Insert_Sort(struct stack **head, int vath)
        Insert_Sort(&tmp,vath);
 
     } 
-
-
 } 
   
 void sort_Stack(struct stack **head) 
@@ -88,16 +91,17 @@ void sort_Stack(struct stack **head)
 	}
 
 } 
-  
+
+//print the elements of the stack  
 void show(struct stack *head) 
 { 
-
 	if (head==NULL)
 		return;
 	printf("%d\n",head->grade);
 	show(head->next);
 } 
 
+//delete all elements
 void st_delete(struct stack **head)
 {
     struct stack *temp;
@@ -109,7 +113,7 @@ void st_delete(struct stack **head)
     }
 }
 
-  
+//demo of using the stack
 int main() 
 { 
     struct stack *top;
@@ -118,8 +122,7 @@ int main()
 	printf("\n"); 
 	printf("Insertion of grades in a stack using a single linked list\n");
 	printf("***********************************************************\n");
-    printf("\n");
-   
+    printf("\n"); 
     int choice;
     while(1){
     	printf("Enter grade:");
@@ -140,15 +143,14 @@ int main()
 		}
 		if (choice==0)
 			break;
-		   
 	}
-
+	printf("Elements before sorting:\n")
 	show(top);
 	sort_Stack(&top);
+	printf("Elements after sorting:\n")
 	show(top);
     st_delete(&top);
     system("pause");
-
     return 0; 
 } 
 
